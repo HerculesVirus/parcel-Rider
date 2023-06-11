@@ -25,7 +25,8 @@ const orderSchema = new mongoose.Schema({
       quantity: {type: Number, default: 0, },
       totalPrice: {type: Number, default: 0, }
     }
-  ]
+  ],
+  status:{type: String, enum:['accept','reject' ,'pending'] , default: 'pending'}
 },{timestamps: true})
 
 module.exports = mongoose.model('order', orderSchema);

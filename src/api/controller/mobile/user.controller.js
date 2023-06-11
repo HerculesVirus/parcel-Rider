@@ -161,6 +161,28 @@ exports.getApprovedUser = async (req, res) => {
   }
 }
 
+exports.getDashboard = async (req ,res) => {
+  try{
+    const approvedRiders = await models.user.countDocuments({ status: 'approved'});
+    const rejectRiders = await models.user.countDocuments({ status: 'reject'});
+    const pendingRiders = await models.user.countDocuments({ status: 'pending'});
+    globalServices.global.returnResponse(
+      res,
+      200,
+      false,
+      'Dashboard rider documents fetched succesfully',
+      {
+        approvedRiders: approvedRiders || 0 ,
+        rejectRiders: rejectRiders || 0,
+        pendingRiders: pendingRiders || 0
+      }
+    );
+  }
+  catch(error) {
+    res.status(500).json(error);
+  }
+}
+
 exports.getProfile = async (req, res , next) => {
   try{
     let { userId } = req.params
