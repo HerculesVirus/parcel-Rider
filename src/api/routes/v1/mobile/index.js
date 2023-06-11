@@ -7,6 +7,7 @@ const eventRoutes = require('./event.route');
 const cmsRoutes =require('./cms.route')
 const supportRoutes = require('./support.route')
 const FaqRoutes = require('./faq.route')
+const orderRoutes = require('./order.route')
 const router = express.Router();
 // const {uploadToCloudinary,cpUpload}=require('../../../utils/upload')
 /**
@@ -19,5 +20,6 @@ router.use('/card', cardRoutes);
 router.use('/cms',cmsRoutes)
 router.use('/support' , supportRoutes)
 router.use('/faq' , FaqRoutes)
+router.use('/order', orderRoutes)
 
 module.exports = router;

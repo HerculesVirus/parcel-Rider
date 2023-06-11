@@ -13,5 +13,6 @@ Models.partner = require('./partner.model');
 Models.settings = require('./settings.model');
 Models.support = require('./support.model');
 Models.Faq = require('./faq.model')
-Models.wallet = require('./wallet.model')
+Models.wallet = require('./wallet.model');
+Models.order = require('./order.model');
 module.exports = Models;

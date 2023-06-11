@@ -30,7 +30,6 @@ exports.get = async (req,res) => {
 }
 exports.list = async (req , res) => {
     try{
-
         let { all, page, limit } = req.query
         console.log("events: List APi hit")
         let { username , name , createdAtFrom, createdAtTo , role  } = req.body
