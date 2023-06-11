@@ -240,7 +240,7 @@ exports.sigin = async (req, res, next) => {
 
     if (email) email = email.toLowerCase();
 
-    if (email && password && role) {
+    if (email && password ) {
       passport.use(
         new localStrategy(
           { usernameField: 'email' },
@@ -272,7 +272,7 @@ exports.sigin = async (req, res, next) => {
                   message: 'Incorrect userType',
                 });
               } else return done(null, user);
-            }).populate({ path: 'roleId', select: 'title' });
+            })
           }
         )
       );
@@ -293,19 +293,19 @@ exports.sigin = async (req, res, next) => {
           // });
         }
         else if (user ) {
-          if(!user.isVerified){ //when user not verified
+          if(user.status == 'pending'){ //when user not verified
             const data = {
               userId: user._id,
-              isVerified : user.isVerified ,
-              isProfile : user.isProfile,
-              isPartnerCreated: user.isPartnerCreated
+              // isVerified : user.isVerified ,
+              // isProfile : user.isProfile,
+              // isPartnerCreated: user.isPartnerCreated
             };
 
             return globalServices.global.returnResponse(
               res,
               200,
               false,
-              'You have not verified yet',
+              'Your status is pending. Please contact your administrator',
               data
             );
             // return res.status(200).send({
@@ -324,10 +324,21 @@ exports.sigin = async (req, res, next) => {
             userId: user._id,
             username: user.username,
             email: user.email,
-            role: user.role,
-            isVerified : user.isVerified ,
-            isProfile : user.isProfile,
-            isPartnerCreated: user.isPartnerCreated
+            firstName : user.firstName , 
+            lastName: user.lastName , 
+            bikeExperience: user.bikeExperience , 
+            ratePerHour: user.ratePerHour , 
+            frontCnic: user.frontCnic , 
+            backCnic: user.backCnic, 
+            frontDL: user.frontDL ,
+            backDL: user.backDL , 
+            userImage: user.userImage , 
+            phoneNumber: user.phoneNumber
+
+            // role: user.role,
+            // isVerified : user.isVerified ,
+            // isProfile : user.isProfile,
+            // isPartnerCreated: user.isPartnerCreated
           };
           return globalServices.global.returnResponse(
             res,
