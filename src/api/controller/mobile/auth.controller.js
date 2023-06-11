@@ -50,7 +50,7 @@ exports.register = async (req, res, next) => {
     console.log("register")
     let { username, email, password, firstName , lastName , bikeExperience , ratePerHour , frontCnic , backCnic , frontDL ,backDL , userImage , phoneNumber} = req.body;
 
-    if (username && email && password ) {
+    if (email && password ) {
       email = email.toLowerCase().trim();
       let user = await User.findOne({email });
 
