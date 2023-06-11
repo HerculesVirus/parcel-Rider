@@ -8,6 +8,8 @@ const { userValidation } =require('../../../middleware/auth')
 
 router.route('/me').get(userValidation, controller.getUser)
 router.route('/register-userslist').get(controller.getRegisterUserList);
+router.route('/update-user-status').put(controller.updateRiderStatus);
+router.route('/approved-user').get(controller.getApprovedUser);
 router.route('/profile/:userId').get(userValidation ,controller.getProfile);
 router.route('/create-profile').post(userValidation , controller.createProfile)
 router.route('/profile').put( userValidation ,cpUpload,controller.updateProfile)

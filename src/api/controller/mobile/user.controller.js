@@ -103,6 +103,64 @@ exports.getRegisterUserList = async (req ,res) => {
     }
 }
 
+exports.updateRiderStatus = async (req ,res) => {
+  try {
+    const { userId, status } = req.body;
+    const user = await models.user.findOneAndUpdate(
+      { _id: mongoose.Types.ObjectId(userId) },
+      { $set: { status: status } },
+      { new: true }
+    )
+    if(!user){
+      globalServices.global.returnResponse(
+        res,
+        404,
+        true,
+        'User not found!',
+        {}
+      );
+    }else{
+      globalServices.global.returnResponse(
+        res,
+        200,
+        false,
+        'User updated succesfully',
+        user
+      );
+    }
+  }
+  catch (error) {
+    res.status(500).json(error);
+  }
+}
+
+exports.getApprovedUser = async (req, res) => {
+  try{
+    let userList = await models.user.find({ status: 'approved' }).lean(true);
+      if(userList){
+        globalServices.global.returnResponse(
+          res,
+          200,
+          false,
+          'Approved Rider list fetched succesfully',
+          userList
+        );
+      }
+      else {
+        globalServices.global.returnResponse(
+          res,
+          404,
+          true,
+          'User list not found!',
+          {}
+        );
+      }
+  }
+  catch(error) {
+    res.status(500).json(error);
+  }
+}
+
 exports.getProfile = async (req, res , next) => {
   try{
     let { userId } = req.params
