@@ -76,6 +76,33 @@ exports.getUser = async (req, res) => {
   }
 };
 
+exports.getRegisterUserList = async (req ,res) => {
+  try {
+      let userList = await models.user.find({ status: 'pending' }).lean(true);
+      if(userList){
+        globalServices.global.returnResponse(
+          res,
+          200,
+          false,
+          'User list fetched succesfully',
+          userList
+        );
+      }
+      else {
+        globalServices.global.returnResponse(
+          res,
+          404,
+          true,
+          'User list not found!',
+          {}
+        );
+      }
+
+    } catch (error) {
+      res.status(500).json(error);
+    }
+}
+
 exports.getProfile = async (req, res , next) => {
   try{
     let { userId } = req.params

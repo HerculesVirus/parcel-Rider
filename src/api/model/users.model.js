@@ -43,7 +43,7 @@ let UserSchema = new mongoose.Schema(
     // isProfile: { type: Boolean, default: false }, //userProfile is created or NOT with that userId
     // status: { type: Boolean }, // false: inactive, true: active
     // isPartnerCreated: { type: Boolean, default: false }, // boolean when user become  a partner
-    status: { type: String, enum: ['approved' , 'rejected' , 'pending'], default: 'pending' }, //
+    status: { type: String, enum: ['approved' , 'reject' , 'pending'], default: 'pending' }, //
   },
   { timestamps: true }
 );
