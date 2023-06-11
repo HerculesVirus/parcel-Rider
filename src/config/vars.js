@@ -18,7 +18,7 @@ module.exports = {
   // appName: process.env.APPLICATION_NAME,
   // providerAddress: process.env.PROVIDER_ADDRESS,
   mongo: {
-    uri: process.env.MONGO_URI_LOCAL,
+    uri: process.env.MONGO_URI,
   },
   mailgunDomain: process.env.MAILGUN_DOMAIN,
   mailgunApi: process.env.MAILGUN_API,

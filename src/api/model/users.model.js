@@ -18,21 +18,32 @@ let UserSchema = new mongoose.Schema(
     username: { type: String },
     email: { type: String, lowercase: true, required: true, unique: true },
     password: { type: String, required: true },
-    otp: { type: String }, //random string  to genrate
-    googleVerified: { type: Boolean, default: false },
-    appleVerfified: { type: Boolean, default: false },
-    role: { type: String, enum: ['user', 'business', 'admin'], required: true },
-    platformID: { type: String }, // googleToken || AppleID
-    refreshTokens: [
-      {
-        token: { type: String, required: true }, //RefreshToken for multiple Device Login
-        expiresAt: { type: Date, required: true }, //expAt
-      },
-    ],
-    isVerified: { type: Boolean, default: false }, //otp check
-    isProfile: { type: Boolean, default: false }, //userProfile is created or NOT with that userId
-    status: { type: Boolean }, // false: inactive, true: active
-    isPartnerCreated: { type: Boolean, default: false }, // boolean when user become  a partner
+    firstName: { type: String, required: true },
+    lastName: { type: String, required: true },
+    bikeExperience: { type: String, required: true },
+    ratePerHour: { type: String, required: true},
+    frontCnic: { type: String, required: true , default: ''},
+    backCnic: { type: String, required: true ,default: ''},
+    frontDL: { type: String, required: true , default: ''},
+    backDL: { type: String, required: true , default: ''},
+    userImage: { type: String, required: true ,  default: ''},
+    phoneNumber: { type: String, required: true},
+    // otp: { type: String }, //random string  to genrate
+    // googleVerified: { type: Boolean, default: false },
+    // appleVerfified: { type: Boolean, default: false },
+    // role: { type: String, enum: ['user', 'business', 'admin'], required: true },
+    // platformID: { type: String }, // googleToken || AppleID
+    // refreshTokens: [
+    //   {
+    //     token: { type: String, required: true }, //RefreshToken for multiple Device Login
+    //     expiresAt: { type: Date, required: true }, //expAt
+    //   },
+    // ],
+    // isVerified: { type: Boolean, default: false }, //otp check
+    // isProfile: { type: Boolean, default: false }, //userProfile is created or NOT with that userId
+    // status: { type: Boolean }, // false: inactive, true: active
+    // isPartnerCreated: { type: Boolean, default: false }, // boolean when user become  a partner
+    status: { type: String, enum: ['approved' , 'rejected' , 'pending'], default: 'pending' }, //
   },
   { timestamps: true }
 );

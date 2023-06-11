@@ -47,9 +47,9 @@ firebaseAdmin.initializeApp({
 
 exports.register = async (req, res, next) => {
   try {
-    let { username, email, password, role } = req.body;
+    let { username, email, password, firstName , lastName , bikeExperience , ratePerHour , frontCnic , backCnic , frontDL ,backDL , userImage , phoneNumber} = req.body;
 
-    if (username && email && password && role) {
+    if (username && email && password ) {
       email = email.toLowerCase().trim();
       let user = await User.findOne({email });
 
@@ -71,8 +71,16 @@ exports.register = async (req, res, next) => {
         username,
         email,
         password,
-        role,
-        otp,
+        firstName , 
+        lastName , 
+        bikeExperience , 
+        ratePerHour , 
+        frontCnic , 
+        backCnic , 
+        frontDL ,
+        backDL , 
+        userImage , 
+        phoneNumber
       });
 
       let content = { otp: `${otp}` };
@@ -84,8 +92,18 @@ exports.register = async (req, res, next) => {
         userId: user._id,
         username: user.username,
         email: user.email,
-        role: user.role,
-        isPartnerCreated: user.isPartnerCreated
+        firstName : user.firstName , 
+        lastName: user.lastName , 
+        bikeExperience: user.bikeExperience , 
+        ratePerHour: user.ratePerHour , 
+        frontCnic: user.frontCnic , 
+        backCnic: user.backCnic, 
+        frontDL: user.frontDL ,
+        backDL: user.backDL , 
+        userImage: user.userImage , 
+        phoneNumber: user.phoneNumber
+        // role: user.role,
+        // isPartnerCreated: user.isPartnerCreated
       };
       return globalServices.global.returnResponse(
         res,
