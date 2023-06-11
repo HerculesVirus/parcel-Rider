@@ -296,6 +296,7 @@ exports.sigin = async (req, res, next) => {
           if(user.status == 'pending'){ //when user not verified
             const data = {
               userId: user._id,
+              status: user.status
               // isVerified : user.isVerified ,
               // isProfile : user.isProfile,
               // isPartnerCreated: user.isPartnerCreated
@@ -333,7 +334,8 @@ exports.sigin = async (req, res, next) => {
             frontDL: user.frontDL ,
             backDL: user.backDL , 
             userImage: user.userImage , 
-            phoneNumber: user.phoneNumber
+            phoneNumber: user.phoneNumber,
+            status: user.status
 
             // role: user.role,
             // isVerified : user.isVerified ,
