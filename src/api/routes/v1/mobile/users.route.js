@@ -7,7 +7,7 @@ const { profileUpload,uploadSingle,cpUpload ,multi_upload } = require('../../../
 const { userValidation } =require('../../../middleware/auth')
 
 router.route('/me').get(userValidation, controller.getUser)
-router.route('/register-userslist').post(userValidation, controller.getRegisterUserList);
+router.route('/register-userslist').get(controller.getRegisterUserList);
 router.route('/profile/:userId').get(userValidation ,controller.getProfile);
 router.route('/create-profile').post(userValidation , controller.createProfile)
 router.route('/profile').put( userValidation ,cpUpload,controller.updateProfile)
